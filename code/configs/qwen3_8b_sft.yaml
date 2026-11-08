@@ -1,0 +1,45 @@
+### Qwen3-8B LoRA SFT：业务模型的保守单卡起始配置
+# 显存是否足够必须在目标服务器上用 20 step 冒烟训练确认，不能由 4B 结果直接推断。
+model_name_or_path: model_files/Qwen3-8B
+template: qwen3
+# 本项目只训练最终 JSON，不训练思维链；SFT、DPO、评测和部署必须保持一致。
+enable_thinking: false
+stage: sft
+do_train: true
+do_eval: true
+finetuning_type: lora
+lora_target: all
+lora_rank: 8
+lora_alpha: 16
+lora_dropout: 0.05
+
+dataset_dir: code/data/datasets/llamafactory
+dataset: recruitment_sft_train
+eval_dataset: recruitment_sft_dev
+cutoff_len: 2048
+packing: true
+
+output_dir: code/outputs/runs/sft-qwen3-8b-lf
+overwrite_output_dir: false
+per_device_train_batch_size: 1
+gradient_accumulation_steps: 16
+per_device_eval_batch_size: 1
+learning_rate: 1.0e-4
+# 74k 训练样本的首轮业务验证先跑 1 epoch；是否增加只依据 dev 与冻结集结果决定。
+num_train_epochs: 1.0
+lr_scheduler_type: cosine
+warmup_ratio: 0.03
+bf16: true
+gradient_checkpointing: true
+
+logging_steps: 10
+eval_strategy: steps
+eval_steps: 200
+save_steps: 200
+save_total_limit: 3
+load_best_model_at_end: true
+metric_for_best_model: eval_loss
+greater_is_better: false
+plot_loss: true
+report_to: none
+seed: 20260714

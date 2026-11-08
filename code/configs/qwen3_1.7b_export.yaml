@@ -1,0 +1,9 @@
+### Qwen3-1.7B LoRA 合并配置
+model_name_or_path: ../../环境和物料/models/models/Qwen--Qwen3-1.7B/snapshots/master
+adapter_name_or_path: code/outputs/runs/sft-qwen3-1.7b
+template: qwen3
+finetuning_type: lora
+export_dir: code/outputs/merged_qwen3_1.7b
+export_size: 5
+export_device: cpu
+export_legacy_format: false

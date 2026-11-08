@@ -1,0 +1,9 @@
+### LLaMA-Factory OpenAI 兼容 API：Qwen3-8B SFT + DPO 合并模型
+model_name_or_path: code/outputs/merged_qwen3_8b_recruitment_dpo_codex_direct_v2
+template: qwen3
+enable_thinking: false
+finetuning_type: full
+infer_backend: huggingface
+infer_dtype: bfloat16
+do_sample: false
+max_new_tokens: 512

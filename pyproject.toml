@@ -1,0 +1,48 @@
+[project]
+name = "job-finetune-course"
+version = "0.1.0"
+description = "Recruitment-domain Qwen fine-tuning teaching code based on Llama Factory."
+readme = "code/README.md"
+requires-python = ">=3.11,<3.12"
+dependencies = [
+    "accelerate==1.11.0",
+    "bitsandbytes>=0.43.0",
+    "datasets==4.0.0",
+    "google-genai>=1.0.0",
+    "llamafactory[metrics]==0.9.4",
+    "modelscope>=1.20.0",
+    "numpy>=2.0,<2.5",
+    "openpyxl>=3.1.5",
+    "pandas>=2.0.0",
+    "peft==0.17.1",
+    "protobuf",
+    "scipy>=1.13",
+    "sentencepiece",
+    "setuptools>=80,<82",
+    "torch==2.11.0",
+    "torchaudio==2.11.0",
+    "torchvision==0.26.0",
+    "transformers==4.57.1",
+    "trl==0.24.0",
+    "tqdm>=4.67.0",
+    "wheel>=0.47.0",
+]
+
+[dependency-groups]
+dev = [
+    "black>=24.0",
+    "ipykernel>=7.2.0",
+    "jupyterlab",
+    "pytest>=7.4.0",
+    "ruff>=0.4.0",
+    "tensorboard",
+    "wandb",
+]
+
+[tool.uv]
+package = false
+concurrent-downloads = 16
+
+[[tool.uv.index]]
+url = "https://mirrors.aliyun.com/pypi/simple/"
+default = true

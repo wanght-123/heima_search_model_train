@@ -1,0 +1,44 @@
+### Qwen3-4B LoRA DPO：Codex Direct v2 招聘业务偏好数据
+# DPO 必须从已合并 SFT 能力的完整模型开始，不要直接从原始基座模型开始。
+model_name_or_path: code/outputs/merged_qwen3_4b_recruitment
+template: qwen3
+stage: dpo
+do_train: true
+do_eval: true
+finetuning_type: lora
+lora_target: all
+lora_rank: 8
+lora_alpha: 16
+lora_dropout: 0.05
+
+dataset_dir: code/data/datasets/llamafactory
+dataset: recruitment_dpo_codex_direct_v2_train
+eval_dataset: recruitment_dpo_codex_direct_v2_eval
+cutoff_len: 2048
+overwrite_cache: true
+preprocessing_num_workers: 4
+
+output_dir: code/outputs/runs/dpo-qwen3-4b-codex-direct-v2
+overwrite_output_dir: false
+per_device_train_batch_size: 1
+gradient_accumulation_steps: 16
+per_device_eval_batch_size: 1
+learning_rate: 5.0e-6
+num_train_epochs: 1.0
+lr_scheduler_type: cosine
+warmup_ratio: 0.1
+bf16: true
+gradient_checkpointing: true
+pref_beta: 0.1
+
+logging_steps: 10
+eval_strategy: steps
+eval_steps: 20
+save_steps: 20
+save_total_limit: 3
+load_best_model_at_end: true
+metric_for_best_model: eval_loss
+greater_is_better: false
+plot_loss: true
+report_to: none
+seed: 20260714

@@ -1,0 +1,9 @@
+### 将 Codex Direct v2 DPO LoRA 合并到 SFT 起点模型
+model_name_or_path: code/outputs/merged_qwen3_4b_recruitment
+adapter_name_or_path: code/outputs/runs/dpo-qwen3-4b-codex-direct-v2
+template: qwen3
+finetuning_type: lora
+export_dir: code/outputs/merged_qwen3_4b_recruitment_dpo_codex_direct_v2
+export_size: 5
+export_device: cpu
+export_legacy_format: false

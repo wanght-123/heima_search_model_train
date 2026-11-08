@@ -1,0 +1,9 @@
+### 使用 LLaMA-Factory 合并 LoRA adapter
+model_name_or_path: model_files/Qwen3-4B
+adapter_name_or_path: code/outputs/runs/sft-qwen3-4b-lf
+template: qwen3
+finetuning_type: lora
+export_dir: code/outputs/merged_qwen3_4b_recruitment
+export_size: 5
+export_device: cpu
+export_legacy_format: false

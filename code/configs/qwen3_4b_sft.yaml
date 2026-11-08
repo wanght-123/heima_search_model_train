@@ -1,0 +1,41 @@
+### Qwen3-4B LoRA SFT，面向大显存 NVIDIA GPU
+model_name_or_path: model_files/Qwen3-4B
+template: qwen3
+stage: sft
+do_train: true
+do_eval: true
+finetuning_type: lora
+lora_target: all
+lora_rank: 8
+lora_alpha: 16
+lora_dropout: 0.05
+
+dataset_dir: code/data/datasets/llamafactory
+dataset: recruitment_sft_train
+eval_dataset: recruitment_sft_dev
+cutoff_len: 2048
+packing: true
+
+output_dir: code/outputs/runs/sft-qwen3-4b-lf
+overwrite_output_dir: false
+per_device_train_batch_size: 4
+gradient_accumulation_steps: 4
+per_device_eval_batch_size: 4
+learning_rate: 1.0e-4
+num_train_epochs: 3.0
+lr_scheduler_type: cosine
+warmup_ratio: 0.03
+bf16: true
+gradient_checkpointing: true
+
+logging_steps: 10
+eval_strategy: steps
+eval_steps: 200
+save_steps: 200
+save_total_limit: 3
+load_best_model_at_end: true
+metric_for_best_model: eval_loss
+greater_is_better: false
+plot_loss: true
+report_to: none
+seed: 20260614

@@ -1,0 +1,8 @@
+### LLaMA-Factory OpenAI 兼容 API，使用已合并模型
+model_name_or_path: code/outputs/merged_qwen3_4b_recruitment
+template: qwen3
+finetuning_type: full
+infer_backend: huggingface
+infer_dtype: bfloat16
+do_sample: false
+max_new_tokens: 512
